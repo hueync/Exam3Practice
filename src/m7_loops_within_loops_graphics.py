@@ -5,9 +5,9 @@ This problem provides practice at:
   ***  LOOPS WITHIN LOOPS in 2D GRAPHICS problems.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
-
+         their colleagues and Nathaniel Huey.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
+import math
 ########################################################################
 # Students:
 #
@@ -88,8 +88,39 @@ def hourglass(window, n, point, radius, color):
     where n and radius are positive and color is a string that denotes
     a color that rosegraphics understands.
     """
+    for k in range(n):
+        circle1 = rg.Circle(rg.Point(point.x - radius*k, point.y - math.sqrt(3*radius**2)*k ),radius)
+        line = rg.Line(rg.Point(circle1.center.x - radius, circle1.center.y), rg.Point(circle1.center.x + radius, circle1.center.y))
+        circle1.fill_color = color
+        circle1.attach_to(window)
+        line.attach_to(window)
+        window.render(.15)
+        for j in range(k):
+            circle1 = rg.Circle(rg.Point(circle1.center.x + 2*radius, circle1.center.y), radius)
+            line = rg.Line(rg.Point(circle1.center.x - radius, circle1.center.y),
+                           rg.Point(circle1.center.x + radius, circle1.center.y))
+            circle1.fill_color = color
+            circle1.attach_to(window)
+            line.attach_to(window)
+            window.render(.15)
+    for l in range(n ):
+        circle1 = rg.Circle(rg.Point(point.x - radius * l, point.y + math.sqrt(3 * radius ** 2) * l), radius)
+        line = rg.Line(rg.Point(circle1.center.x - radius, circle1.center.y),
+                       rg.Point(circle1.center.x + radius, circle1.center.y))
+        circle1.fill_color = color
+        circle1.attach_to(window)
+        line.attach_to(window)
+        window.render(.15)
+        for m in range(l):
+            circle1 = rg.Circle(rg.Point(circle1.center.x + 2 * radius, circle1.center.y), radius)
+            line = rg.Line(rg.Point(circle1.center.x - radius, circle1.center.y),
+                           rg.Point(circle1.center.x + radius, circle1.center.y))
+            circle1.fill_color = color
+            circle1.attach_to(window)
+            line.attach_to(window)
+            window.render(.15)
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
