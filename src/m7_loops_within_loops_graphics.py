@@ -33,7 +33,7 @@ import rosegraphics as rg
 
 def main():
     """ Calls the   TEST   functions in this module. """
-    run_test_hourglass()
+    #run_test_hourglass()
     run_test_many_hourglasses()
 
 
@@ -194,7 +194,7 @@ def many_hourglasses(window, square, m, colors):
     each of which denotes a color that rosegraphics understands.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -210,8 +210,21 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+    radius = square.length_of_each_side/2
+    init_y = square.center.y
+    init_x = square.center.x
 
-
+    for k in range(m):
+        circles = k + 1
+        rect_width = 2 * radius * circles
+        rect_height = radius * 2 + (2* radius * math.sqrt(3) * (circles-1))
+        corner1 = rg.Point(init_x - rect_width/2, init_y - rect_height/2)
+        corner2 = rg.Point(init_x + rect_width/2, init_y + rect_height/2)
+        rectangle = rg.Rectangle(corner1, corner2)
+        rectangle.attach_to(window)
+        hourglass(window,(k+1), rg.Point(init_x, init_y), radius, colors[k % len((colors))])
+        init_x += radius * ( 2* circles + 1)
+        window.render(.05)
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
